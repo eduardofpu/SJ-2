@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="VeiculoAdesivado" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c088d664-4658-45e5-a847-4e22ae3f57f3">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[select * from veiculo]]>
+	</queryString>
+	<field name="bloco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroApartamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo_carroAdesivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cor_carroAdesivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="motorista_carroAdesivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cnh_motorista_carroAdesivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="placa_carroAdesivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo_carroNaoAdesivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cor_carroNaoAdesivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="motorista_carroNaoAdesivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cnh_motorista_carroNaoAdesivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="placa_carroNaoAdesivado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="bloco">
+		<groupExpression><![CDATA[$F{bloco}]]></groupExpression>
+		<groupHeader>
+			<band height="31">
+				<frame>
+					<reportElement uuid="4a483842-8df2-4949-b197-16d8a3e37ff0" mode="Opaque" x="-21" y="7" width="843" height="24" forecolor="#B89F7D" backcolor="#F2EBDF"/>
+					<rectangle>
+						<reportElement uuid="ba457910-e4f4-4a52-81e2-31aaf479d347" mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343"/>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<textField>
+						<reportElement uuid="09b0d921-ee0d-45d5-a995-f819f3ed3be7" style="SubTitle" x="68" y="0" width="755" height="24" forecolor="#736343"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bloco}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2f2d18a1-1785-491b-82c3-02f4f54267e8" style="Title" x="172" y="0" width="476" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font size="36" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Carro Adesivado e não adesivado]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="f483b118-da69-42d5-9c2b-64755151e94a" positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="96a9065c-d91b-441e-8cc9-e6162d7ad9b2" style="Column header" x="0" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Apartamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f0feedbd-7c0f-44b7-a0f5-0e3bbc9df7d9" style="Column header" x="72" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[CarroAdesivado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="24f71e37-a46e-46fd-8c75-b4042407117a" style="Column header" x="144" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[corAdesivado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4bb828fb-5438-4f8f-a508-c03cf01983ec" style="Column header" x="216" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[carroAdesivado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="67f9f650-41a2-4ae2-8985-db253ca20bbd" style="Column header" x="288" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[cnhAdesivado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="10bdd0fc-2dab-47f7-acda-80be208a92ac" style="Column header" x="360" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[placaAdesivado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1a28d386-61f4-45f7-8b35-3c88075d3a17" style="Column header" x="432" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[modeloNaoAdesivado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c330f60f-bd5e-4131-a859-9fa26841f5ca" style="Column header" x="504" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[corNaoAdesivado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="58a7972b-32b5-4131-8bc2-8ee262531349" style="Column header" x="576" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[motorista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="afc42365-beef-4bcc-bc75-b5f3de47a5c8" style="Column header" x="648" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[cnh]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="45ed27f1-854b-4845-acdb-f3fb78e8a52f" style="Column header" x="720" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[placa]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="b5cdce8d-48dd-46dc-b9a7-4f9201dbbf0e" style="Row" mode="Opaque" x="0" y="0" width="802" height="15"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8e53f8f0-f039-43e5-befa-e0d09e2a0520" style="Detail" x="0" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{numeroApartamento}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="d734ef7c-a682-452d-8dfa-aa6193dfa826" style="Detail" x="72" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{modelo_carroAdesivado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="625a3be6-69f8-4e5f-af5a-b104d9c17fe9" style="Detail" x="144" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cor_carroAdesivado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="d67b56f0-68a4-44e1-ab6f-2df21f4eea84" style="Detail" x="216" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{motorista_carroAdesivado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="522f20d9-5e7e-43a4-abd0-9b71aebe2d4c" style="Detail" x="288" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cnh_motorista_carroAdesivado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="45078890-e850-423e-b871-08347775fd18" style="Detail" x="360" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{placa_carroAdesivado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="f075f69d-704a-4eef-9082-9473dd7d6763" style="Detail" x="432" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{modelo_carroNaoAdesivado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="6bbb26e6-b558-4b81-9622-377e36d41fcb" style="Detail" x="504" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cor_carroNaoAdesivado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="41c6e9d7-4712-4cad-9d59-5079e5bcbdc6" style="Detail" x="576" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{motorista_carroNaoAdesivado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="9c231165-c889-475b-a7a6-eebadfff0952" style="Detail" x="648" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cnh_motorista_carroNaoAdesivado}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="c9a71d3a-3a2d-4d0e-ada0-d2800d5c767f" style="Detail" x="720" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{placa_carroNaoAdesivado}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement uuid="e2a6aa20-ecd8-44ef-84db-1ff082a978f0" positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="c9ea6b43-bbe6-427b-afaa-3517c8408151" mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="d0e44f1f-0293-4812-bbf0-3e559fda2053" style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="f78de4e5-e800-4b15-b58a-1161cb8df82d" style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="a77c8d31-7733-42b2-add3-14bc5ff372c2" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

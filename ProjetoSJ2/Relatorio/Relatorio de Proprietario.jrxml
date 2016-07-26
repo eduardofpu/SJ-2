@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Relatorio de Proprietario" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ae958d14-f754-4e7f-849e-b5b09ff7b136">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
+	<queryString language="SQL">
+		<![CDATA[select * from condominio]]>
+	</queryString>
+	<field name="bloco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroApartamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="proprietario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telefoneProprietario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="emailProprietario" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="bloco">
+		<groupExpression><![CDATA[$F{bloco}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="b929e0ae-66e7-4673-93fe-d7e2e6246834" x="70" y="17" width="465" height="62" forecolor="#33CC00"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATÓRIO DE PROPRIETÁRIOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement uuid="31649db6-2ba9-45b8-b259-0dec9e7ecd52" x="396" y="15" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="91b9dbbe-bb4d-41e3-ac6c-f987fabfe22f" x="495" y="15" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c9a7b79d-2b22-42d3-bc47-ab8164e105ff" x="30" y="24" width="47" height="20" forecolor="#0033CC" backcolor="#666666"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BLOCO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b67070c3-1160-4591-8448-c323d426e705" x="101" y="24" width="97" height="20" forecolor="#0033CC"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[APARTAMENTOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1c024245-f24a-41aa-a4d4-16be276d9be6" x="233" y="24" width="124" height="19" forecolor="#0033CC"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROPRIETÁRIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="310313a2-cb65-409c-8c77-7692c66dc092" x="430" y="24" width="65" height="20" forecolor="#0033CC"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONE:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="5b00c2ec-fb0a-43a5-b5ea-4b4c0ada41f4" x="0" y="44" width="555" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a932c416-5feb-49ce-848c-3196a0a3a6e0" x="30" y="0" width="60" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bloco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2f272d2c-35ba-478b-9a8d-ab8e31ea49e2" x="101" y="0" width="116" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numeroApartamento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6098543c-59cf-4468-b4fe-f8307eb7b8d6" x="233" y="0" width="163" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{proprietario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d9c5cb09-3f7d-4d9d-a003-312b497eae4e" x="427" y="0" width="108" height="20" forecolor="#FF6600"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{telefoneProprietario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement uuid="585d59e1-3dc0-458a-ba86-23dedc2d9fe2" x="435" y="34" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c3f47d38-ae83-428c-b8c2-14a6e92ff619" x="321" y="34" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Total de páginas:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

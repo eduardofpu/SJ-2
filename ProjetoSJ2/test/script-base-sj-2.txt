@@ -1,0 +1,2342 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+-- -----------------------------------------------------
+-- Schema projetosj2
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema projetosj2
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `projetosj2` DEFAULT CHARACTER SET utf8 ;
+USE `projetosj2` ;
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`condominio`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`condominio` (
+  `idMorador` INT(11) NOT NULL AUTO_INCREMENT,
+  `bloco` VARCHAR(15) NOT NULL,
+  `numeroApartamento` VARCHAR(15) NOT NULL,
+  `proprietario` VARCHAR(50) NOT NULL,
+  `telefoneProprietario` VARCHAR(20) NOT NULL,
+  `emailProprietario` VARCHAR(255) NOT NULL,
+  `situacaoImovel` VARCHAR(20) NOT NULL,
+  `nomeMorador` VARCHAR(500) NOT NULL,
+  `emailMorador` VARCHAR(255) NOT NULL,
+  `telefoneContato1` VARCHAR(20) NOT NULL,
+  `nomeContato1` VARCHAR(50) NOT NULL,
+  `telefoneContato2` VARCHAR(20) NOT NULL,
+  `nomeContato2` VARCHAR(50) NOT NULL,
+  `telefoneContato3` VARCHAR(20) NOT NULL,
+  `nomeContato3` VARCHAR(50) NOT NULL,
+  `quantidadeAnimal` VARCHAR(10) NOT NULL,
+  `observacaoAnimal` VARCHAR(1000) NOT NULL,
+  `telefoneUrgencia` VARCHAR(20) NOT NULL,
+  `contatoUrgencia` VARCHAR(50) NOT NULL,
+  `celularUrgencia` VARCHAR(20) NOT NULL,
+  `contatoCelularUrgencia` VARCHAR(50) NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idMorador`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`diario_passagem_servico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`diario_passagem_servico` (
+  `idDiario` INT(11) NOT NULL AUTO_INCREMENT,
+  `observacao` VARCHAR(1000) NOT NULL,
+  `nome` VARCHAR(50) NOT NULL,
+  `usuario` VARCHAR(50) NOT NULL,
+  `dataObs` VARCHAR(12) NOT NULL,
+  `horaObs` VARCHAR(12) NOT NULL,
+  PRIMARY KEY (`idDiario`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`exmorador`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`exmorador` (
+  `idEx` INT(11) NOT NULL AUTO_INCREMENT,
+  `idMorador` INT(11) NOT NULL,
+  `bloco` VARCHAR(15) NOT NULL,
+  `numeroApartamento` VARCHAR(15) NOT NULL,
+  `proprietario` VARCHAR(50) NOT NULL,
+  `telefoneProprietario` VARCHAR(20) NOT NULL,
+  `emailProprietario` VARCHAR(255) NOT NULL,
+  `situacaoImovel` VARCHAR(50) NULL DEFAULT NULL,
+  `nomeMorador` VARCHAR(1000) NOT NULL,
+  `emailMorador` VARCHAR(255) NOT NULL,
+  `telefoneContato1` VARCHAR(20) NOT NULL,
+  `nomeContato1` VARCHAR(50) NOT NULL,
+  `telefoneContato2` VARCHAR(20) NOT NULL,
+  `nomeContato2` VARCHAR(50) NOT NULL,
+  `telefoneContato3` VARCHAR(20) NOT NULL,
+  `nomeContato3` VARCHAR(50) NOT NULL,
+  `quantidadeAnimal` VARCHAR(10) NOT NULL,
+  `observacaoAnimal` VARCHAR(1000) NOT NULL,
+  `dataSaida` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `telefoneUrgencia` VARCHAR(20) NOT NULL,
+  `contatoUrgencia` VARCHAR(50) NOT NULL,
+  `celularUrgencia` VARCHAR(20) NOT NULL,
+  `contatoCelularUrgencia` VARCHAR(50) NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idEx`),
+  INDEX `idMorador` (`idMorador` ASC),
+  CONSTRAINT `exmorador_ibfk_1`
+    FOREIGN KEY (`idMorador`)
+    REFERENCES `projetosj2`.`condominio` (`idMorador`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`funcionario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`funcionario` (
+  `idFuncionario` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(50) NOT NULL,
+  `rg` VARCHAR(15) NOT NULL,
+  `estadoRg` VARCHAR(20) NOT NULL,
+  `cpf` VARCHAR(15) NOT NULL,
+  `telefoneProprio` VARCHAR(20) NOT NULL,
+  `telefoneRecado` VARCHAR(20) NOT NULL,
+  `nomeContato` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `cidade` VARCHAR(100) NOT NULL,
+  `estadoCidade` VARCHAR(100) NOT NULL,
+  `rua` VARCHAR(255) NOT NULL,
+  `numero` VARCHAR(10) NOT NULL,
+  `bairro` VARCHAR(255) NOT NULL,
+  `complemento` VARCHAR(255) NOT NULL,
+  `img` LONGBLOB NOT NULL,
+  PRIMARY KEY (`idFuncionario`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`interfone`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`interfone` (
+  `idIterfone` INT(11) NOT NULL AUTO_INCREMENT,
+  `idMorador` INT(11) NOT NULL,
+  `bloco` VARCHAR(15) NOT NULL,
+  `numeroApartamento` VARCHAR(15) NOT NULL,
+  `nomeProprietario` VARCHAR(50) NOT NULL,
+  `situacaoInterfone` VARCHAR(1000) NOT NULL,
+  PRIMARY KEY (`idIterfone`),
+  INDEX `idMorador` (`idMorador` ASC),
+  CONSTRAINT `interfone_ibfk_1`
+    FOREIGN KEY (`idMorador`)
+    REFERENCES `projetosj2`.`condominio` (`idMorador`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`mudanca`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`mudanca` (
+  `idMudanca` INT(11) NOT NULL AUTO_INCREMENT,
+  `idMorador` INT(11) NOT NULL,
+  `bloco` VARCHAR(15) NOT NULL,
+  `numeroApartamento` VARCHAR(15) NOT NULL,
+  `situacaoImovel` VARCHAR(20) NOT NULL,
+  `nomeMorador` VARCHAR(1000) NOT NULL,
+  `emailMorador` VARCHAR(255) NOT NULL,
+  `telefoneContato1` VARCHAR(20) NOT NULL,
+  `nomeContato1` VARCHAR(50) NOT NULL,
+  `telefoneContato2` VARCHAR(20) NOT NULL,
+  `nomeContato2` VARCHAR(50) NOT NULL,
+  `telefoneContato3` VARCHAR(20) NOT NULL,
+  `nomeContato3` VARCHAR(50) NOT NULL,
+  `quantidadeAnimal` VARCHAR(10) NOT NULL,
+  `observacaoAnimal` VARCHAR(1000) NOT NULL,
+  `dataAgendamentoMudanca` VARCHAR(12) NOT NULL,
+  `dataMudanca` VARCHAR(12) NOT NULL,
+  `horaMudanca` VARCHAR(12) NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
+  `celularUgencia` VARCHAR(45) NOT NULL,
+  `contatoCelularUgencia` VARCHAR(45) NOT NULL,
+  `telefoneUgencia` VARCHAR(45) NOT NULL,
+  `contatoTelefoneUgencia` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idMudanca`),
+  INDEX `idMorador` (`idMorador` ASC),
+  CONSTRAINT `mudanca_ibfk_1`
+    FOREIGN KEY (`idMorador`)
+    REFERENCES `projetosj2`.`condominio` (`idMorador`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`usuario` (
+  `id_login` INT(11) NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(50) NOT NULL,
+  `senha` VARCHAR(50) NOT NULL,
+  `permissao` VARCHAR(50) NOT NULL,
+  `login` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id_login`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`veiculo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`veiculo` (
+  `idVeiculo` INT(11) NOT NULL AUTO_INCREMENT,
+  `idMorador` INT(11) NOT NULL,
+  `bloco` VARCHAR(15) NOT NULL,
+  `numeroApartamento` VARCHAR(15) NOT NULL,
+  `modelo_carroAdesivado` VARCHAR(50) NOT NULL,
+  `cor_carroAdesivado` VARCHAR(20) NOT NULL,
+  `motorista_carroAdesivado` VARCHAR(50) NOT NULL,
+  `cnh_motorista_carroAdesivado` VARCHAR(50) NOT NULL,
+  `placa_carroAdesivado` VARCHAR(255) NOT NULL,
+  `modelo_carroNaoAdesivado` VARCHAR(50) NOT NULL,
+  `cor_carroNaoAdesivado` VARCHAR(20) NOT NULL,
+  `motorista_carroNaoAdesivado` VARCHAR(50) NOT NULL,
+  `cnh_motorista_carroNaoAdesivado` VARCHAR(50) NOT NULL,
+  `placa_carroNaoAdesivado` VARCHAR(255) NOT NULL,
+  `modelo_moto1` VARCHAR(50) NOT NULL,
+  `cor_moto1` VARCHAR(20) NOT NULL,
+  `motorista_moto1` VARCHAR(50) NOT NULL,
+  `cnh_motorista_moto1` VARCHAR(50) NOT NULL,
+  `placa_moto1` VARCHAR(255) NOT NULL,
+  `modelo_moto2` VARCHAR(50) NOT NULL,
+  `cor_moto2` VARCHAR(20) NOT NULL,
+  `motorista_moto2` VARCHAR(50) NOT NULL,
+  `cnh_motorista_moto2` VARCHAR(50) NOT NULL,
+  `placa_moto2` VARCHAR(255) NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
+  `garagem` VARCHAR(45) NOT NULL,
+  `descricao` VARCHAR(255) NOT NULL,
+  `bicicleta` VARCHAR(355) NOT NULL,
+  PRIMARY KEY (`idVeiculo`),
+  INDEX `idMorador` (`idMorador` ASC),
+  CONSTRAINT `veiculo_ibfk_1`
+    FOREIGN KEY (`idMorador`)
+    REFERENCES `projetosj2`.`condominio` (`idMorador`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`veiculo_mudanca`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`veiculo_mudanca` (
+  `idVeiculoMudanca` INT(11) NOT NULL AUTO_INCREMENT,
+  `idVeiculo` INT(11) NOT NULL,
+  `idMorador` INT(11) NOT NULL,
+  `idMuda` INT(11) NOT NULL,
+  `bloco` VARCHAR(15) NOT NULL,
+  `numeroApartamento` VARCHAR(15) NOT NULL,
+  `modelo_carroAdesivado` VARCHAR(50) NOT NULL,
+  `cor_carroAdesivado` VARCHAR(20) NOT NULL,
+  `motorista_carroAdesivado` VARCHAR(50) NOT NULL,
+  `cnh_motorista_carroAdesivado` VARCHAR(50) NOT NULL,
+  `placa_carroAdesivado` VARCHAR(255) NOT NULL,
+  `modelo_carroNaoAdesivado` VARCHAR(50) NOT NULL,
+  `cor_carroNaoAdesivado` VARCHAR(20) NOT NULL,
+  `motorista_carroNaoAdesivado` VARCHAR(50) NOT NULL,
+  `cnh_motorista_carroNaoAdesivado` VARCHAR(50) NOT NULL,
+  `placa_carroNaoAdesivado` VARCHAR(255) NOT NULL,
+  `modelo_moto1` VARCHAR(50) NOT NULL,
+  `cor_moto1` VARCHAR(20) NOT NULL,
+  `motorista_moto1` VARCHAR(50) NOT NULL,
+  `cnh_motorista_moto1` VARCHAR(50) NOT NULL,
+  `placa_moto1` VARCHAR(255) NOT NULL,
+  `modelo_moto2` VARCHAR(50) NOT NULL,
+  `cor_moto2` VARCHAR(20) NOT NULL,
+  `motorista_moto2` VARCHAR(50) NOT NULL,
+  `cnh_motorista_moto2` VARCHAR(50) NOT NULL,
+  `placa_moto2` VARCHAR(255) NOT NULL,
+  `garagem` VARCHAR(45) NOT NULL,
+  `descricao` VARCHAR(255) NOT NULL,
+  `bicicleta` VARCHAR(355) NOT NULL,
+  PRIMARY KEY (`idVeiculoMudanca`),
+  INDEX `idMorador` (`idMorador` ASC),
+  INDEX `idVeiculo` (`idVeiculo` ASC),
+  INDEX `idMuda` (`idMuda` ASC),
+  CONSTRAINT `veiculo_mudanca_ibfk_1`
+    FOREIGN KEY (`idMorador`)
+    REFERENCES `projetosj2`.`condominio` (`idMorador`),
+  CONSTRAINT `veiculo_mudanca_ibfk_2`
+    FOREIGN KEY (`idVeiculo`)
+    REFERENCES `projetosj2`.`veiculo` (`idVeiculo`),
+  CONSTRAINT `veiculo_mudanca_ibfk_3`
+    FOREIGN KEY (`idMuda`)
+    REFERENCES `projetosj2`.`mudanca` (`idMudanca`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`veiculoexmorador`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`veiculoexmorador` (
+  `idExV` INT(11) NOT NULL AUTO_INCREMENT,
+  `idVeiculo` INT(11) NOT NULL,
+  `idMorador` INT(11) NOT NULL,
+  `bloco` VARCHAR(15) NOT NULL,
+  `numeroApartamento` VARCHAR(15) NOT NULL,
+  `modelo_carroAdesivado` VARCHAR(50) NOT NULL,
+  `cor_carroAdesivado` VARCHAR(20) NOT NULL,
+  `motorista_carroAdesivado` VARCHAR(50) NOT NULL,
+  `cnh_motorista_carroAdesivado` VARCHAR(50) NOT NULL,
+  `placa_carroAdesivado` VARCHAR(255) NOT NULL,
+  `modelo_carroNaoAdesivado` VARCHAR(50) NOT NULL,
+  `cor_carroNaoAdesivado` VARCHAR(20) NOT NULL,
+  `motorista_carroNaoAdesivado` VARCHAR(50) NOT NULL,
+  `cnh_motorista_carroNaoAdesivado` VARCHAR(50) NOT NULL,
+  `placa_carroNaoAdesivado` VARCHAR(255) NOT NULL,
+  `modelo_moto1` VARCHAR(50) NOT NULL,
+  `cor_moto1` VARCHAR(20) NOT NULL,
+  `motorista_moto1` VARCHAR(50) NOT NULL,
+  `cnh_motorista_moto1` VARCHAR(50) NOT NULL,
+  `placa_moto1` VARCHAR(255) NOT NULL,
+  `modelo_moto2` VARCHAR(50) NOT NULL,
+  `cor_moto2` VARCHAR(20) NOT NULL,
+  `motorista_moto2` VARCHAR(50) NOT NULL,
+  `cnh_motorista_moto2` VARCHAR(50) NOT NULL,
+  `placa_moto2` VARCHAR(255) NOT NULL,
+  `dataSaida` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `tipo` VARCHAR(45) NOT NULL,
+  `garagem` VARCHAR(45) NOT NULL,
+  `descricao` VARCHAR(255) NOT NULL,
+  `bicicleta` VARCHAR(355) NOT NULL,
+  PRIMARY KEY (`idExV`),
+  INDEX `idMorador` (`idMorador` ASC),
+  CONSTRAINT `veiculoexmorador_ibfk_1`
+    FOREIGN KEY (`idMorador`)
+    REFERENCES `projetosj2`.`condominio` (`idMorador`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 2
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`visita`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`visita` (
+  `idVisita` INT(11) NOT NULL AUTO_INCREMENT,
+  `bloco` VARCHAR(15) NOT NULL,
+  `numeroApartamento` VARCHAR(15) NOT NULL,
+  `dataVisita` VARCHAR(12) NOT NULL,
+  `horaVisita` VARCHAR(12) NOT NULL,
+  `rg` VARCHAR(15) NOT NULL,
+  `estado` VARCHAR(20) NOT NULL,
+  `visitante` VARCHAR(50) NOT NULL,
+  `origem` VARCHAR(50) NOT NULL,
+  `observacaoSobreServico` VARCHAR(1000) NOT NULL,
+  `telefone` VARCHAR(20) NOT NULL,
+  `celular` VARCHAR(20) NOT NULL,
+  `dataEntrega` VARCHAR(12) NOT NULL,
+  `dataDevolucao` VARCHAR(12) NOT NULL,
+  `nomePorteiro` VARCHAR(50) NOT NULL,
+  `usuario` VARCHAR(50) NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
+  `autorizacao` VARCHAR(255) NOT NULL,
+  `horaSaida` VARCHAR(45) NOT NULL,
+  `horaEntrada` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idVisita`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `projetosj2`.`visita_chave`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `projetosj2`.`visita_chave` (
+  `idVisita` INT(11) NOT NULL AUTO_INCREMENT,
+  `bloco` VARCHAR(15) NOT NULL,
+  `numeroApartamento` VARCHAR(15) NOT NULL,
+  `dataVisita` VARCHAR(12) NOT NULL,
+  `horaVisita` VARCHAR(12) NOT NULL,
+  `rg` VARCHAR(15) NOT NULL,
+  `estado` VARCHAR(20) NOT NULL,
+  `tecnico` VARCHAR(50) NOT NULL,
+  `empresa` VARCHAR(50) NOT NULL,
+  `observacaoSobreServico` VARCHAR(1000) NOT NULL,
+  `telefone` VARCHAR(20) NOT NULL,
+  `celular` VARCHAR(20) NOT NULL,
+  `dataEntrega` VARCHAR(12) NOT NULL,
+  `dataDevolucao` VARCHAR(12) NOT NULL,
+  `nomePorteiro` VARCHAR(50) NOT NULL,
+  `usuario` VARCHAR(50) NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
+  `autorizacao` VARCHAR(255) NOT NULL,
+  `horaSaida` VARCHAR(45) NOT NULL,
+  `horaEntrada` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idVisita`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+USE `projetosj2` ;
+
+-- -----------------------------------------------------
+-- procedure alteraVeiculo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `alteraVeiculo`(in
+
+
+var_idVeiculo int(11),
+
+var_modelo_carroAdesivado varchar(50),
+var_cor_carroAdesivado varchar(20),
+var_motorista_carroAdesivado varchar(50),
+var_cnh_motorista_carroAdesivado varchar(50),
+var_placa_carroAdesivado varchar(255),
+
+var_modelo_carroNaoAdesivado varchar(50),
+var_cor_carroNaoAdesivado varchar(20),
+var_motorista_carroNaoAdesivado varchar(50),
+var_cnh_motorista_carroNaoAdesivado varchar(50),
+var_placa_carroNaoAdesivado varchar(255),
+
+
+var_modelo_moto1 varchar(50),
+var_cor_moto1 varchar(20),
+var_motorista_moto1 varchar(50),
+var_cnh_motorista_moto1 varchar(50),
+var_placa_moto1 varchar(255),
+
+
+
+var_modelo_moto2 varchar(50),
+var_cor_moto2 varchar(20),
+var_motorista_moto2 varchar(50),
+var_cnh_motorista_moto2 varchar(50),
+var_placa_moto2 varchar(255),
+var_descricao varchar(255),
+var_bicicleta varchar(355)
+
+
+)
+begin
+
+update veiculo set
+
+
+idVeiculo=var_idVeiculo ,
+
+
+modelo_carroAdesivado=var_modelo_carroAdesivado ,
+cor_carroAdesivado=var_cor_carroAdesivado ,
+motorista_carroAdesivado=var_motorista_carroAdesivado ,
+cnh_motorista_carroAdesivado=var_cnh_motorista_carroAdesivado ,
+placa_carroAdesivado =var_placa_carroAdesivado ,
+
+modelo_carroNaoAdesivado =var_modelo_carroNaoAdesivado ,
+cor_carroNaoAdesivado=var_cor_carroNaoAdesivado ,
+motorista_carroNaoAdesivado=var_motorista_carroNaoAdesivado ,
+cnh_motorista_carroNaoAdesivado=var_cnh_motorista_carroNaoAdesivado ,
+placa_carroNaoAdesivado=var_placa_carroNaoAdesivado ,
+
+
+modelo_moto1=var_modelo_moto1 ,
+cor_moto1=var_cor_moto1 ,
+motorista_moto1=var_motorista_moto1 ,
+cnh_motorista_moto1=var_cnh_motorista_moto1,
+placa_moto1=var_placa_moto1 ,
+
+
+modelo_moto2=var_modelo_moto2 ,
+cor_moto2=var_cor_moto2 ,
+motorista_moto2=var_motorista_moto2 ,
+cnh_motorista_moto2=var_cnh_motorista_moto2 ,
+placa_moto2 =var_placa_moto2 ,
+
+tipo="alterado" ,
+descricao = var_descricao,
+bicicleta=var_bicicleta
+
+
+where idVeiculo=var_idVeiculo ;
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure alteramoradortelefonecontatos
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `alteramoradortelefonecontatos`(in
+
+
+var_idMorador int(11),
+
+var_proprietario varchar(50),
+var_telefoneProprietario varchar(20),
+var_emailProprietario varchar(255),
+
+var_situacaoImovel varchar(20),
+var_nomeMorador varchar(500),
+var_emailMorador varchar(255),
+
+var_telefoneContato1 varchar(20),
+var_nomeContato1 varchar(50),
+
+var_telefoneContato2 varchar(20),
+var_nomeContato2 varchar(50),
+
+var_telefoneContato3 varchar(20),
+var_nomeContato3 varchar(50),
+
+var_quantidadeAnimal varchar(10),
+var_observacaoAnimal varchar(1000),
+
+var_telefoneUrgencia varchar(20),
+var_contatoUrgencia varchar(50),
+var_celularUrgencia varchar(20),
+var_contatoCelularUrgencia varchar(50)
+)
+begin
+
+update condominio set
+
+idMorador = var_idMorador,
+
+proprietario = var_proprietario ,
+telefoneProprietario = var_telefoneProprietario ,
+emailProprietario = var_emailProprietario, 
+situacaoImovel = var_situacaoImovel ,
+nomeMorador = var_nomeMorador ,
+
+emailMorador = var_emailMorador ,
+telefoneContato1 = var_telefoneContato1 ,
+nomeContato1 = var_nomeContato1,
+telefoneContato2 = var_telefoneContato2, 
+nomeContato2 = var_nomeContato2,
+
+telefoneContato3 = var_telefoneContato3, 
+nomeContato3 = var_nomeContato3 ,
+
+quantidadeAnimal = var_quantidadeAnimal ,
+observacaoAnimal = var_observacaoAnimal,
+
+telefoneUrgencia = var_telefoneUrgencia ,
+contatoUrgencia = var_contatoUrgencia ,
+celularUrgencia = var_celularUrgencia ,
+contatoCelularUrgencia = var_contatoCelularUrgencia,
+tipo="alterado"
+
+where idMorador = var_idMorador;
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure alugargaragem
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `alugargaragem`(in
+
+
+var_idVeiculo int(11),
+
+
+
+var_modelo_carroAdesivado varchar(50),
+var_cor_carroAdesivado varchar(20),
+var_motorista_carroAdesivado varchar(50),
+var_cnh_motorista_carroAdesivado varchar(50),
+var_placa_carroAdesivado varchar(255),
+
+var_modelo_carroNaoAdesivado varchar(50),
+var_cor_carroNaoAdesivado varchar(20),
+var_motorista_carroNaoAdesivado varchar(50),
+var_cnh_motorista_carroNaoAdesivado varchar(50),
+var_placa_carroNaoAdesivado varchar(255),
+
+
+var_modelo_moto1 varchar(50),
+var_cor_moto1 varchar(20),
+var_motorista_moto1 varchar(50),
+var_cnh_motorista_moto1 varchar(50),
+var_placa_moto1 varchar(255),
+
+
+
+var_modelo_moto2 varchar(50),
+var_cor_moto2 varchar(20),
+var_motorista_moto2 varchar(50),
+var_cnh_motorista_moto2 varchar(50),
+var_placa_moto2 varchar(255),
+var_garagem varchar(45),
+var_descricao varchar(255),
+var_bicicleta varchar(355)
+
+)
+begin
+
+update veiculo set
+
+
+idVeiculo=var_idVeiculo ,
+
+
+modelo_carroAdesivado=var_modelo_carroAdesivado ,
+cor_carroAdesivado=var_cor_carroAdesivado ,
+motorista_carroAdesivado=var_motorista_carroAdesivado ,
+cnh_motorista_carroAdesivado=var_cnh_motorista_carroAdesivado ,
+placa_carroAdesivado =var_placa_carroAdesivado ,
+
+modelo_carroNaoAdesivado =var_modelo_carroNaoAdesivado ,
+cor_carroNaoAdesivado=var_cor_carroNaoAdesivado ,
+motorista_carroNaoAdesivado=var_motorista_carroNaoAdesivado ,
+cnh_motorista_carroNaoAdesivado=var_cnh_motorista_carroNaoAdesivado ,
+placa_carroNaoAdesivado=var_placa_carroNaoAdesivado ,
+
+
+modelo_moto1=var_modelo_moto1 ,
+cor_moto1=var_cor_moto1 ,
+motorista_moto1=var_motorista_moto1 ,
+cnh_motorista_moto1=var_cnh_motorista_moto1,
+placa_moto1=var_placa_moto1 ,
+
+
+modelo_moto2=var_modelo_moto2 ,
+cor_moto2=var_cor_moto2 ,
+motorista_moto2=var_motorista_moto2 ,
+cnh_motorista_moto2=var_cnh_motorista_moto2 ,
+placa_moto2 =var_placa_moto2 ,
+tipo="alterado",
+garagem=var_garagem,
+descricao=var_descricao,
+bicicleta=var_bicicleta
+where idVeiculo= var_idVeiculo;
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure atualizaVeiculoMudanca
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `atualizaVeiculoMudanca`(in
+var_idVeiculoMudanca  int(11),
+var_idVeiculo int(11),
+var_idMorador int(11),
+var_idMuda int(11),
+var_bloco varchar(15),
+var_numeroApartamento varchar(15)
+)
+begin
+ update  veiculo_mudanca set 
+ 
+ idVeiculo=var_idVeiculo,idMorador=var_idMorador,idMuda=var_idMuda,
+ bloco=var_bloco,numeroApartamento=var_numeroApartamento  where 
+ idVeiculoMudanca = var_idVeiculoMudanca ;
+ 
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure baixa_visita_chave
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `baixa_visita_chave`(in 
+var_idVisita int(11),
+var_dataEntrega varchar(12),
+var_dataDevolucao varchar(12),
+var_horaSaida varchar(45)
+)
+begin
+
+update visita_chave set
+dataEntrega=var_dataEntrega,
+dataDevolucao=var_dataDevolucao,
+tipo="Baixa confirmada" ,
+horaSaida=var_horaSaida
+where idVisita=var_idVisita;
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure baixa_visitante
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `baixa_visitante`(in 
+var_idVisita int(11),
+var_dataEntrega varchar(12),
+var_dataDevolucao varchar(12),
+var_horaSaida varchar(45)
+)
+begin
+
+update visita set
+dataEntrega=var_dataEntrega,
+dataDevolucao=var_dataDevolucao,
+tipo="Baixa confirmada" ,
+horaSaida=var_horaSaida
+where idVisita=var_idVisita;
+
+
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure deleteAgendamento
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteAgendamento`(in
+var_idMudanca int(11)
+
+)
+begin
+
+delete from mudanca where idMudanca=var_idMudanca;
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure deleteUsuario
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteUsuario`(in
+var_idLogin  int(11)
+
+)
+begin
+ 
+ 
+ delete from usuario where id_login=var_idLogin ;
+ 
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure deleteVeiculoMudanca
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deleteVeiculoMudanca`(in
+var_idVeiculoMudanca  int(11)
+
+)
+begin
+ 
+ 
+ delete from veiculo_mudanca where idVeiculoMudanca=var_idVeiculoMudanca ;
+ 
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure devolucao_visita_chave
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `devolucao_visita_chave`(in
+var_idVisita int(11),
+
+var_dataDevolucao varchar(12),
+var_horaSaida varchar(45)
+
+)
+begin
+
+update  visita_chave set
+
+dataDevolucao=var_dataDevolucao , tipo="Devolução confirmada",
+horaSaida=var_horaSaida
+
+where idVisita =var_idVisita ;
+
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure editarInterfone
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `editarInterfone`(in var_id int(11), var_nomeProprietario varchar(50),
+var_situacaoInterfone varchar(255))
+begin
+update interfone set nomeProprietario=var_nomeProprietario,situacaoInterfone=var_situacaoInterfone
+where idIterfone = var_id;
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure entrada_visita_chave
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `entrada_visita_chave`(in
+var_idVisita int(11),
+
+var_rg varchar(15),
+var_estado varchar(20),
+var_tecnico varchar(50),
+
+var_observacaoSobreServico varchar(255),
+var_telefone varchar(20),
+var_celular varchar(20),
+var_dataEntrega varchar(12),
+var_horaEntrada varchar(45)
+)
+begin
+
+update  visita_chave set
+rg=var_rg ,
+estado=var_estado ,
+tecnico=var_tecnico ,
+
+observacaoSobreServico=var_observacaoSobreServico ,
+telefone=var_telefone ,
+celular=var_celular ,
+dataEntrega=var_dataEntrega,
+tipo="Entrega de chave confirmada",
+horaEntrada=var_horaEntrada
+where idVisita =var_idVisita ;
+
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure entrada_visitante
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `entrada_visitante`(in
+var_idVisita int(11),
+
+var_rg varchar(15),
+var_estado varchar(20),
+var_visitante varchar(50),
+
+var_observacaoSobreServico varchar(255),
+var_telefone varchar(20),
+var_celular varchar(20),
+var_dataEntrega varchar(12),
+var_horaEntrada varchar(45)
+)
+begin
+
+update  visita set
+rg=var_rg ,
+estado=var_estado ,
+visitante=var_visitante ,
+
+observacaoSobreServico=var_observacaoSobreServico ,
+telefone=var_telefone ,
+celular=var_celular ,
+dataEntrega=var_dataEntrega,
+tipo="Entrada do visitante confirmada",
+horaEntrada=var_horaEntrada
+where idVisita =var_idVisita ;
+
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserirVeiculoMudanca
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserirVeiculoMudanca`(in
+var_idVeiculo int(11),
+var_idMorador int(11),
+var_idMuda int(11),
+var_bloco varchar(15),
+var_numeroApartamento varchar(15),
+var_modelo_carroAdesivado varchar(50),
+var_cor_carroAdesivado varchar(20),
+var_motorista_carroAdesivado varchar(50),
+var_cnh_motorista_carroAdesivado varchar(50),
+var_placa_carroAdesivado varchar(10),
+
+var_modelo_carroNaoAdesivado varchar(50),
+var_cor_carroNaoAdesivado varchar(20),
+var_motorista_carroNaoAdesivado varchar(50),
+var_cnh_motorista_carroNaoAdesivado varchar(50),
+var_placa_carroNaoAdesivado varchar(10),
+
+
+var_modelo_moto1 varchar(50),
+var_cor_moto1 varchar(20),
+var_motorista_moto1 varchar(50),
+var_cnh_motorista_moto1 varchar(50),
+var_placa_moto1 varchar(10),
+
+
+
+var_modelo_moto2 varchar(50),
+var_cor_moto2 varchar(20),
+var_motorista_moto2 varchar(50),
+var_cnh_motorista_moto2 varchar(50),
+var_placa_moto2 varchar(10),
+var_garagem varchar(45),
+var_descricao varchar(255),
+var_bicicleta varchar(355) 
+
+
+
+
+
+)
+begin
+
+insert into veiculo_mudanca(
+idVeiculo,
+idMorador,
+idMuda,
+bloco ,
+numeroApartamento ,
+modelo_carroAdesivado ,
+cor_carroAdesivado ,
+motorista_carroAdesivado ,
+cnh_motorista_carroAdesivado ,
+placa_carroAdesivado ,
+
+modelo_carroNaoAdesivado ,
+cor_carroNaoAdesivado ,
+motorista_carroNaoAdesivado ,
+cnh_motorista_carroNaoAdesivado ,
+placa_carroNaoAdesivado ,
+
+
+modelo_moto1 ,
+cor_moto1 ,
+motorista_moto1 ,
+cnh_motorista_moto1 ,
+placa_moto1 ,
+
+
+
+modelo_moto2 ,
+cor_moto2 ,
+motorista_moto2 ,
+cnh_motorista_moto2 ,
+placa_moto2, 
+garagem ,
+descricao ,
+bicicleta
+
+
+) 
+
+values(
+var_idVeiculo,
+var_idMorador,
+var_idMuda,
+var_bloco ,
+var_numeroApartamento ,
+var_modelo_carroAdesivado ,
+var_cor_carroAdesivado ,
+var_motorista_carroAdesivado ,
+var_cnh_motorista_carroAdesivado ,
+var_placa_carroAdesivado ,
+
+var_modelo_carroNaoAdesivado ,
+var_cor_carroNaoAdesivado ,
+var_motorista_carroNaoAdesivado ,
+var_cnh_motorista_carroNaoAdesivado ,
+var_placa_carroNaoAdesivado ,
+
+
+var_modelo_moto1 ,
+var_cor_moto1 ,
+var_motorista_moto1 ,
+var_cnh_motorista_moto1 ,
+var_placa_moto1 ,
+
+
+
+var_modelo_moto2 ,
+var_cor_moto2 ,
+var_motorista_moto2 ,
+var_cnh_motorista_moto2 ,
+var_placa_moto2 ,
+var_garagem ,
+var_descricao ,
+var_bicicleta
+
+
+
+);
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_condominio
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_condominio`(in 
+var_bloco varchar(15),
+var_numeroApartamento varchar(15),
+var_proprietario varchar(50),
+var_telefoneProprietario varchar(20),
+var_emailProprietario varchar(255),
+var_situacaoImovel varchar(50),
+var_nomeMorador varchar(500),
+var_emailMorador varchar(255),
+var_telefoneContato1 varchar(20),
+var_nomeContato1 varchar(50),
+var_telefoneContato2 varchar(20),
+var_nomeContato2 varchar(50),
+var_telefoneContato3 varchar(20),
+var_nomeContato3 varchar(50),
+var_quantidadeAnimal varchar(10),
+var_observacaoAnimal varchar(1000),
+
+var_telefoneUrgencia varchar(20),
+var_contatoUrgencia varchar(50),
+var_celularUrgencia varchar(20),
+var_contatoCelularUrgencia varchar(50)
+
+)
+begin
+insert into condominio(
+bloco,
+numeroApartamento,
+proprietario,
+telefoneProprietario,
+emailProprietario,
+situacaoImovel,
+nomeMorador,
+emailMorador,
+telefoneContato1,
+nomeContato1,
+telefoneContato2, 
+nomeContato2,
+telefoneContato3,
+nomeContato3,
+quantidadeAnimal,
+observacaoAnimal,
+
+telefoneUrgencia ,
+contatoUrgencia ,
+celularUrgencia ,
+contatoCelularUrgencia,
+tipo
+) 
+
+values (
+
+var_bloco,
+var_numeroApartamento,
+var_proprietario,
+var_telefoneProprietario,
+var_emailProprietario,
+var_situacaoImovel,
+var_nomeMorador,
+var_emailMorador,
+var_telefoneContato1,
+var_nomeContato1,
+var_telefoneContato2, 
+var_nomeContato2,
+var_telefoneContato3,
+var_nomeContato3,
+var_quantidadeAnimal,
+var_observacaoAnimal,
+var_telefoneUrgencia ,
+var_ContatoUrgencia ,
+var_celularUrgencia ,
+var_contatoCelularUrgencia,
+"morador"
+);
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_diario_passagem_servico
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_diario_passagem_servico`(in
+var_observacao varchar(1000),
+var_nome varchar(50),
+var_usuario varchar(50),
+var_dataObs varchar(12),
+var_horaObs varchar(12)
+
+)
+begin
+
+insert into diario_passagem_servico(
+observacao ,
+nome ,
+usuario ,
+dataObs ,
+horaObs 
+
+
+)
+
+ values (
+
+var_observacao ,
+var_nome ,
+var_usuario ,
+var_dataObs ,
+var_horaObs 
+
+);
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_ex_morador
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_ex_morador`(in 
+var_idMorador int(11),
+var_bloco varchar(15),
+var_numeroApartamento varchar(15),
+var_proprietario varchar(50),
+var_telefoneProprietario varchar(255),
+var_emailProprietario varchar(255),
+var_situacaoImovel varchar(50),
+var_nomeMorador varchar(1000),
+var_emailMorador varchar(255),
+var_telefoneContato1 varchar(20),
+var_nomeContato1 varchar(50),
+var_telefoneContato2 varchar(20),
+var_nomeContato2 varchar(50),
+var_telefoneContato3 varchar(20),
+var_nomeContato3 varchar(50),
+var_quantidadeAnimal varchar(10),
+var_observacaoAnimal varchar(1000),
+var_dataSaida timestamp,
+var_telefoneUrgencia varchar(20),
+var_contatoUrgencia varchar(50),
+var_celularUrgencia varchar(20),
+var_contatoCelularUrgencia varchar(50),
+var_tipo varchar(45)
+
+)
+begin
+insert into exmorador(
+idMorador,
+bloco,
+numeroApartamento,
+proprietario,
+telefoneProprietario,
+emailProprietario,
+situacaoImovel,
+nomeMorador,
+emailMorador,
+telefoneContato1,
+nomeContato1,
+telefoneContato2, 
+nomeContato2,
+telefoneContato3,
+nomeContato3,
+quantidadeAnimal,
+observacaoAnimal,
+dataSaida,
+telefoneUrgencia ,
+contatoUrgencia ,
+celularUrgencia ,
+contatoCelularUrgencia, 
+tipo
+) 
+
+values (
+var_idMorador,
+var_bloco,
+var_numeroApartamento,
+var_proprietario,
+var_telefoneProprietario,
+var_emailProprietario,
+var_situacaoImovel,
+var_nomeMorador,
+var_emailMorador,
+var_telefoneContato1,
+var_nomeContato1,
+var_telefoneContato2, 
+var_nomeContato2,
+var_telefoneContato3,
+var_nomeContato3,
+var_quantidadeAnimal,
+var_observacaoAnimal,
+var_dataSaida,
+var_telefoneUrgencia ,
+var_ContatoUrgencia ,
+var_celularUrgencia ,
+var_contatoCelularUrgencia,
+var_tipo
+);
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_ex_veiculo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_ex_veiculo`(in
+
+
+var_idVeiculo int(11),
+var_idMorador int(11),
+
+var_bloco varchar(15),
+var_numeroApartamento varchar(15),
+var_modelo_carroAdesivado varchar(50),
+var_cor_carroAdesivado varchar(20),
+var_motorista_carroAdesivado varchar(50),
+var_cnh_motorista_carroAdesivado varchar(50),
+var_placa_carroAdesivado varchar(10),
+
+var_modelo_carroNaoAdesivado varchar(50),
+var_cor_carroNaoAdesivado varchar(20),
+var_motorista_carroNaoAdesivado varchar(50),
+var_cnh_motorista_carroNaoAdesivado varchar(50),
+var_placa_carroNaoAdesivado varchar(10),
+
+
+var_modelo_moto1 varchar(50),
+var_cor_moto1 varchar(20),
+var_motorista_moto1 varchar(50),
+var_cnh_motorista_moto1 varchar(50),
+var_placa_moto1 varchar(10),
+
+
+
+var_modelo_moto2 varchar(50),
+var_cor_moto2 varchar(20),
+var_motorista_moto2 varchar(50),
+var_cnh_motorista_moto2 varchar(50),
+var_placa_moto2 varchar(10),
+
+var_dataSaida timestamp,
+var_tipo varchar(45),
+var_garagem varchar(45),
+var_descricao varchar(255),
+var_bicicleta varchar(355) 
+)
+begin
+
+insert into veiculoexmorador (
+
+
+
+idVeiculo,
+idMorador,
+
+bloco,
+numeroApartamento ,
+modelo_carroAdesivado ,
+cor_carroAdesivado ,
+motorista_carroAdesivado ,
+cnh_motorista_carroAdesivado ,
+placa_carroAdesivado  ,
+
+modelo_carroNaoAdesivado  ,
+cor_carroNaoAdesivado ,
+motorista_carroNaoAdesivado ,
+cnh_motorista_carroNaoAdesivado ,
+placa_carroNaoAdesivado ,
+
+
+modelo_moto1,
+cor_moto1,
+motorista_moto1 ,
+cnh_motorista_moto1,
+placa_moto1 ,
+
+
+modelo_moto2 ,
+cor_moto2,
+motorista_moto2 ,
+cnh_motorista_moto2 ,
+placa_moto2 ,
+dataSaida ,
+tipo,
+garagem ,
+descricao ,
+bicicleta
+
+) values(
+
+
+var_idVeiculo,
+var_idMorador,
+
+var_bloco,
+var_numeroApartamento ,
+var_modelo_carroAdesivado ,
+var_cor_carroAdesivado ,
+var_motorista_carroAdesivado ,
+var_cnh_motorista_carroAdesivado ,
+var_placa_carroAdesivado  ,
+
+var_modelo_carroNaoAdesivado  ,
+var_cor_carroNaoAdesivado ,
+var_motorista_carroNaoAdesivado ,
+var_cnh_motorista_carroNaoAdesivado ,
+var_placa_carroNaoAdesivado ,
+
+
+var_modelo_moto1,
+var_cor_moto1,
+var_motorista_moto1 ,
+var_cnh_motorista_moto1,
+var_placa_moto1 ,
+
+
+var_modelo_moto2 ,
+var_cor_moto2,
+var_motorista_moto2 ,
+var_cnh_motorista_moto2 ,
+var_placa_moto2 ,
+var_dataSaida ,
+var_tipo,
+var_garagem ,
+var_descricao ,
+var_bicicleta
+
+);
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_funcionario
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_funcionario`(in 
+var_nome varchar(50),
+
+var_rg varchar(15),
+var_estadoRg  varchar(20) ,
+var_cpf varchar(15),
+var_telefoneProprio varchar(20),
+var_telefoneRecado varchar(20),
+var_nomeContato varchar(50),
+var_email varchar(255),
+var_cidade varchar(100),
+var_estadoCidade varchar(100),
+
+var_rua varchar(255),
+var_numero varchar(10),
+var_bairro varchar(255),
+var_complemento varchar(255)
+
+
+)
+begin
+insert into funcionario(
+nome ,
+
+rg ,
+estadoRg  ,
+cpf ,
+telefoneProprio,
+telefoneRecado,
+nomeContato,
+email ,
+cidade,
+estadoCidade,
+rua ,
+numero ,
+bairro ,
+complemento,
+img
+) 
+
+values (
+
+var_nome ,
+
+var_rg ,
+var_estadoRg ,
+var_cpf ,
+var_telefoneProprio,
+var_telefoneRecado,
+var_nomeContato,
+var_email ,
+var_cidade ,
+var_estadoCidade ,
+var_rua ,
+var_numero ,
+var_bairro ,
+var_complemento,
+"Sem imagem"
+);
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_interfone
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_interfone`(in 
+
+var_idMorador varchar(11),
+var_bloco varchar(15),
+var_numeroApartamento varchar(15),
+var_nomeProprietario varchar(50),
+var_situacaoInterfone varchar(1000)
+
+)
+begin
+
+insert into interfone(
+
+idMorador,
+bloco,
+numeroApartamento,
+nomeProprietario ,
+situacaoInterfone 
+
+) 
+
+
+values(
+
+var_idMorador,
+var_bloco,
+var_numeroApartamento,
+var_nomeProprietario ,
+var_situacaoInterfone 
+
+);
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_mudanca
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_mudanca`(in 
+var_idMorador varchar(11),
+var_bloco varchar(15),
+var_numeroApartamento varchar(15),
+
+var_situacaoImovel varchar(50),
+var_nomeMorador varchar(1000),
+var_emailMorador varchar(255),
+var_telefoneContato1 varchar(20),
+var_nomeContato1 varchar(50),
+var_telefoneContato2 varchar(20),
+var_nomeContato2 varchar(50),
+var_telefoneContato3 varchar(20),
+var_nomeContato3 varchar(50),
+var_quantidadeAnimal varchar(10),
+var_observacaoAnimal varchar(1000),
+var_dataAgendamentoMudanca varchar(12),
+var_dataMudanca varchar(12),
+var_horaMudanca varchar(12),
+
+var_celularUgencia varchar(45),
+var_contatoCelularUgencia varchar(45),
+
+var_telefoneUgencia varchar(45),
+var_contatoTelefoneUgencia varchar(45)
+
+)
+begin
+insert into mudanca(
+idMorador,
+bloco,
+numeroApartamento,
+
+situacaoImovel,
+nomeMorador,
+emailMorador,
+telefoneContato1,
+nomeContato1,
+telefoneContato2, 
+nomeContato2,
+telefoneContato3,
+nomeContato3,
+quantidadeAnimal,
+observacaoAnimal,
+dataAgendamentoMudanca,
+dataMudanca ,
+horaMudanca ,
+tipo,
+celularUgencia ,
+contatoCelularUgencia ,
+
+telefoneUgencia ,
+contatoTelefoneUgencia 
+) 
+
+values (
+var_idMorador,
+var_bloco,
+var_numeroApartamento,
+
+var_situacaoImovel,
+var_nomeMorador,
+var_emailMorador,
+var_telefoneContato1,
+var_nomeContato1,
+var_telefoneContato2, 
+var_nomeContato2,
+var_telefoneContato3,
+var_nomeContato3,
+var_quantidadeAnimal,
+var_observacaoAnimal,
+var_dataAgendamentoMudanca,
+var_dataMudanca ,
+var_horaMudanca ,
+"Morador Agendado",
+var_celularUgencia ,
+var_contatoCelularUgencia ,
+
+var_telefoneUgencia ,
+var_contatoTelefoneUgencia 
+
+);
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_usuario
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_usuario`(in
+var_nome varchar(50),
+var_senha varchar(50),
+var_permissao varchar(50),
+var_login varchar(50)
+)
+begin 
+
+insert into usuario(
+nome ,
+senha,
+permissao,
+login
+) 
+
+values (
+var_nome ,
+var_senha,
+var_permissao,
+var_login  
+);
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_veiculo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_veiculo`(in
+var_idMorador int(11),
+var_bloco varchar(15),
+var_numeroApartamento varchar(15),
+var_modelo_carroAdesivado varchar(50),
+var_cor_carroAdesivado varchar(20),
+var_motorista_carroAdesivado varchar(50),
+var_cnh_motorista_carroAdesivado varchar(50),
+var_placa_carroAdesivado varchar(10),
+
+var_modelo_carroNaoAdesivado varchar(50),
+var_cor_carroNaoAdesivado varchar(20),
+var_motorista_carroNaoAdesivado varchar(50),
+var_cnh_motorista_carroNaoAdesivado varchar(50),
+var_placa_carroNaoAdesivado varchar(10),
+
+
+var_modelo_moto1 varchar(50),
+var_cor_moto1 varchar(20),
+var_motorista_moto1 varchar(50),
+var_cnh_motorista_moto1 varchar(50),
+var_placa_moto1 varchar(10),
+
+
+
+var_modelo_moto2 varchar(50),
+var_cor_moto2 varchar(20),
+var_motorista_moto2 varchar(50),
+var_cnh_motorista_moto2 varchar(50),
+var_placa_moto2 varchar(10),
+var_garagem varchar(45),
+var_descricao varchar(255) ,
+var_bicicleta varchar(355) 
+
+
+)
+begin
+
+insert into veiculo(
+idMorador,
+bloco ,
+numeroApartamento ,
+modelo_carroAdesivado ,
+cor_carroAdesivado ,
+motorista_carroAdesivado ,
+cnh_motorista_carroAdesivado ,
+placa_carroAdesivado ,
+
+modelo_carroNaoAdesivado ,
+cor_carroNaoAdesivado ,
+motorista_carroNaoAdesivado ,
+cnh_motorista_carroNaoAdesivado ,
+placa_carroNaoAdesivado ,
+
+
+modelo_moto1 ,
+cor_moto1 ,
+motorista_moto1 ,
+cnh_motorista_moto1 ,
+placa_moto1 ,
+
+
+
+modelo_moto2 ,
+cor_moto2 ,
+motorista_moto2 ,
+cnh_motorista_moto2 ,
+placa_moto2, 
+tipo,
+garagem ,
+descricao ,
+bicicleta
+
+
+) 
+
+values(
+
+var_idMorador,
+var_bloco ,
+var_numeroApartamento ,
+var_modelo_carroAdesivado ,
+var_cor_carroAdesivado ,
+var_motorista_carroAdesivado ,
+var_cnh_motorista_carroAdesivado ,
+var_placa_carroAdesivado ,
+
+var_modelo_carroNaoAdesivado ,
+var_cor_carroNaoAdesivado ,
+var_motorista_carroNaoAdesivado ,
+var_cnh_motorista_carroNaoAdesivado ,
+var_placa_carroNaoAdesivado ,
+
+
+var_modelo_moto1 ,
+var_cor_moto1 ,
+var_motorista_moto1 ,
+var_cnh_motorista_moto1 ,
+var_placa_moto1 ,
+
+
+
+var_modelo_moto2 ,
+var_cor_moto2 ,
+var_motorista_moto2 ,
+var_cnh_motorista_moto2 ,
+var_placa_moto2, 
+"morador",
+var_garagem ,
+var_descricao ,
+var_bicicleta
+
+
+
+);
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_visita_chave
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_visita_chave`(in
+
+
+var_bloco varchar(15),
+var_numeroApartamento varchar(15),
+var_dataVisita varchar(12),
+var_horaVisita varchar(12),
+var_empresa varchar(50),
+var_observacaoSobreServico varchar(1000),
+
+var_Porteiro varchar(50),
+var_usuario varchar(50),
+
+var_autorizacao varchar(255)
+
+
+
+)
+begin
+
+insert into visita_chave(
+
+
+bloco,
+numeroApartamento ,
+dataVisita ,
+horaVisita ,
+
+rg ,
+estado,
+tecnico ,
+empresa ,
+observacaoSobreServico ,
+telefone ,
+
+celular ,
+dataEntrega,
+dataDevolucao,
+nomePorteiro ,
+usuario, 
+tipo,
+autorizacao,
+horaSaida,
+horaEntrada
+)
+
+ values (
+ 
+ 
+
+var_bloco,
+var_numeroApartamento ,
+var_dataVisita ,
+var_horaVisita ,
+"" ,
+"" ,
+"" ,
+var_empresa,
+var_observacaoSobreServico,
+"" ,
+"" ,
+"" ,
+"" ,
+var_Porteiro ,
+var_usuario ,
+
+ "Agendado",
+var_autorizacao ,
+"",
+""
+ );
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure inserir_visitante
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `inserir_visitante`(in
+
+
+var_bloco varchar(15),
+var_numeroApartamento varchar(15),
+var_dataVisita varchar(12),
+var_horaVisita varchar(12),
+var_origem varchar(50),
+var_observacaoSobreServico varchar(1000),
+
+var_Porteiro varchar(50),
+var_usuario varchar(50),
+
+var_autorizacao varchar(255)
+
+
+)
+begin
+
+insert into visita(
+
+
+bloco,
+numeroApartamento ,
+dataVisita ,
+horaVisita ,
+
+rg ,
+estado,
+visitante ,
+origem ,
+observacaoSobreServico ,
+telefone ,
+
+celular ,
+dataEntrega,
+dataDevolucao,
+nomePorteiro ,
+usuario, 
+tipo,
+autorizacao,
+horaSaida,
+horaEntrada
+)
+
+ values (
+ 
+ 
+
+var_bloco,
+var_numeroApartamento ,
+var_dataVisita ,
+var_horaVisita ,
+"" ,
+"" ,
+"" ,
+var_origem,
+var_observacaoSobreServico,
+"" ,
+"" ,
+"" ,
+"" ,
+var_Porteiro ,
+var_usuario ,
+
+ "Agendado",
+var_autorizacao ,
+"",
+""
+ );
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure retirarsomentemorador
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `retirarsomentemorador`(in
+
+
+var_idMorador int(11)
+
+
+)
+begin
+
+update condominio set
+idMorador=var_idMorador,
+
+situacaoImovel ="vazio",
+nomeMorador ="vazio",
+
+emailMorador ="vazio",
+telefoneContato1 ="vazio",
+nomeContato1="vazio",
+telefoneContato2 ="vazio",
+nomeContato2="vazio",
+
+telefoneContato3 ="vazio",
+nomeContato3 ="vazio",
+
+quantidadeAnimal ="vazio",
+observacaoAnimal ="vazio",
+
+telefoneUrgencia="vazio",
+contatoUrgencia ="vazio",
+celularUrgencia="vazio",
+contatoCelularUrgencia="vazio",
+tipo="alterado"
+
+where idMorador= var_idMorador;
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure retirarsomenteveiculo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `retirarsomenteveiculo`(in
+
+
+var_idVeiculo int(11)
+
+)
+begin
+
+update veiculo set
+
+
+idVeiculo=var_idVeiculo ,
+
+
+modelo_carroAdesivado="vazio",
+cor_carroAdesivado="vazio",
+motorista_carroAdesivado="vazio",
+cnh_motorista_carroAdesivado="vazio",
+placa_carroAdesivado ="vazio",
+
+modelo_carroNaoAdesivado ="vazio",
+cor_carroNaoAdesivado="vazio",
+motorista_carroNaoAdesivado="vazio",
+cnh_motorista_carroNaoAdesivado="vazio",
+placa_carroNaoAdesivado="vazio",
+
+
+modelo_moto1="vazio",
+cor_moto1="vazio",
+motorista_moto1="vazio",
+cnh_motorista_moto1="vazio",
+placa_moto1="vazio",
+
+
+modelo_moto2="vazio",
+cor_moto2="vazio",
+motorista_moto2="vazio",
+cnh_motorista_moto2="vazio",
+placa_moto2 ="vazio",
+tipo="alterado",
+garagem="vazio",
+descricao="vazio",
+bicicleta="vazio"
+
+where idVeiculo= var_idVeiculo;
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure saidaMudanca
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `saidaMudanca`(in
+var_idMorador int(11),
+var_bloco varchar(15),
+var_numeroApartamento varchar(15)
+)
+begin
+
+update condominio set
+
+ bloco=var_bloco,numeroApartamento=var_numeroApartamento,
+ situacaoImovel="Vazio" ,nomeMorador = "Vazio",emailMorador="Vazio",telefoneContato1="Vazio",
+ nomeContato1="Vazio",telefoneContato2="Vazio",nomeContato2="Vazio",
+ telefoneContato3="Vazio",nomeContato3="Vazio",quantidadeAnimal="Vazio",observacaoAnimal ="Vazio",
+ telefoneUrgencia="Vazio",contatoUrgencia="Vazio",
+ celularUrgencia="Vazio",
+ contatoCelularUrgencia="Vazio",
+ tipo="saida"
+  where 
+
+ idMorador= var_idMorador ;
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure saidaVeiculo
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `saidaVeiculo`(in
+var_idVeiculo int(11),
+var_idMorador int(11),
+var_bloco varchar(15),
+var_numeroApartamento varchar(15)
+)
+begin
+update veiculo set 
+modelo_carroAdesivado = "Vazio",
+cor_carroAdesivado ="Vazio",
+motorista_carroAdesivado = "Vazio",
+cnh_motorista_carroAdesivado = "Vazio",
+placa_carroAdesivado = "Vazio",
+modelo_carroNaoAdesivado = "Vazio",
+cor_carroNaoAdesivado = "Vazio",
+motorista_carroNaoAdesivado = "Vazio",
+cnh_motorista_carroNaoAdesivado = "Vazio",
+placa_carroNaoAdesivado = "Vazio",
+modelo_moto1 = "Vazio",
+cor_moto1 = "Vazio",
+motorista_moto1 = "Vazio",
+cnh_motorista_moto1 = "Vazio",
+placa_moto1 = "Vazio",
+modelo_moto2 = "Vazio",
+cor_moto2 = "Vazio",
+motorista_moto2 = "Vazio",
+cnh_motorista_moto2 = "Vazio",
+placa_moto2 = "Vazio",
+tipo="saida",
+garagem="vazio",
+descricao="vazio",
+bicicleta="vazio"
+where  idVeiculo=var_idVeiculo;
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure saida_visitante
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `saida_visitante`(in
+var_idVisita int(11),
+
+var_dataDevolucao varchar(12),
+var_horaSaida varchar(45)
+)
+begin
+
+update  visita set
+
+dataDevolucao=var_dataDevolucao , tipo="Saida confirmada",
+horaSaida=var_horaSaida
+where idVisita =var_idVisita ;
+
+
+
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure updateDataMudancaEHoraMudanca
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `updateDataMudancaEHoraMudanca`(in
+var_idMudanca int(11),
+var_idMorador int(11),
+
+var_horaMudanca varchar(12)
+
+
+)
+begin
+
+update mudanca set  horaMudanca = var_horaMudanca,
+tipo = "Entrada Confirmada"
+where idMudanca=var_idMudanca and idMorador= var_idMorador ;
+
+end$$
+
+DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure update_funcionario
+-- -----------------------------------------------------
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `update_funcionario`(in 
+
+var_idFuncionario int(11),
+var_nome varchar(50),
+var_rg varchar(15),
+var_estadoRg  varchar(20) ,
+var_cpf varchar(15),
+var_telefoneProprio varchar(20),
+var_telefoneRecado varchar(20),
+var_nomeContato varchar(50),
+var_email varchar(255),
+var_cidade varchar(100),
+var_estadoCidade varchar(100),
+
+var_rua varchar(255),
+var_numero varchar(10),
+var_bairro varchar(255),
+var_complemento varchar(255)
+
+
+)
+begin
+update funcionario set
+nome =var_nome,
+
+rg =var_rg,
+estadoRg =var_estadoRg ,
+cpf =var_cpf ,
+telefoneProprio=var_telefoneProprio,
+telefoneRecado=var_telefoneRecado,
+nomeContato=var_nomeContato,
+email =var_email,
+cidade=var_cidade,
+estadoCidade=var_estadoCidade,
+rua =var_rua,
+numero =var_numero,
+bairro =var_bairro,
+complemento=var_complemento
+
+where idFuncionario=var_idFuncionario ;
+ 
+
+
+end$$
+
+DELIMITER ;
+USE `projetosj2`;
+
+DELIMITER $$
+USE `projetosj2`$$
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `projetosj2`.`guardaExMorador`
+AFTER UPDATE ON `projetosj2`.`condominio`
+FOR EACH ROW
+begin 
+call inserir_ex_morador(
+OLD.idMorador,
+OLD.bloco,
+OLD.numeroApartamento,
+OLD.proprietario,
+OLD.telefoneProprietario,
+OLD.emailProprietario,
+OLD.situacaoImovel ,
+OLD.nomeMorador ,
+OLD.emailMorador ,
+OLD.telefoneContato1 ,
+OLD.nomeContato1 ,
+OLD.telefoneContato2 ,
+OLD.nomeContato2 ,
+OLD.telefoneContato3 ,
+OLD.nomeContato3 ,
+OLD.quantidadeAnimal ,
+OLD.observacaoAnimal ,
+now(),  -- pega a data e a hora
+OLD.telefoneUrgencia ,
+OLD.contatoUrgencia ,
+OLD.celularUrgencia ,
+OLD.contatoCelularUrgencia,
+NEW.tipo -- pega o novo tipo
+);
+end$$
+
+USE `projetosj2`$$
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `projetosj2`.`atualizaCondominio`
+AFTER UPDATE ON `projetosj2`.`mudanca`
+FOR EACH ROW
+begin
+
+update condominio set 
+
+
+idMorador=OLD.idMorador,
+bloco=OLD.bloco,
+numeroApartamento=OLD.numeroApartamento,
+
+situacaoImovel=OLD.situacaoImovel ,
+nomeMorador =OLD.nomeMorador ,
+emailMorador=OLD.emailMorador ,
+telefoneContato1=OLD.telefoneContato1 ,
+nomeContato1=OLD.nomeContato1 ,
+telefoneContato2=OLD.telefoneContato2 ,
+nomeContato2=OLD.nomeContato2 ,
+telefoneContato3 =OLD.telefoneContato3 ,
+nomeContato3=OLD.nomeContato3 ,
+quantidadeAnimal =OLD.quantidadeAnimal ,
+observacaoAnimal =OLD.observacaoAnimal ,
+
+telefoneUrgencia=OLD.telefoneUgencia,
+contatoUrgencia=OLD.contatoTelefoneUgencia,
+
+celularUrgencia=OLD.celularUgencia,
+contatoCelularUrgencia=OLD.contatoCelularUgencia,
+tipo="saida"
+
+
+where idMorador=OLD.idMorador ;
+
+end$$
+
+USE `projetosj2`$$
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `projetosj2`.`guardaExVeiculo`
+AFTER UPDATE ON `projetosj2`.`veiculo`
+FOR EACH ROW
+begin 
+call inserir_ex_veiculo(
+
+OLD.idVeiculo,
+OLD.idMorador ,
+OLD.bloco ,
+OLD.numeroApartamento ,
+OLD.modelo_carroAdesivado ,
+OLD.cor_carroAdesivado ,
+OLD.motorista_carroAdesivado ,
+OLD.cnh_motorista_carroAdesivado ,
+OLD.placa_carroAdesivado ,
+
+OLD.modelo_carroNaoAdesivado ,
+OLD.cor_carroNaoAdesivado ,
+OLD.motorista_carroNaoAdesivado ,
+OLD.cnh_motorista_carroNaoAdesivado ,
+OLD.placa_carroNaoAdesivado ,
+
+OLD.modelo_moto1 ,
+OLD.cor_moto1 ,
+OLD.motorista_moto1 ,
+OLD.cnh_motorista_moto1 ,
+OLD.placa_moto1 ,
+
+OLD.modelo_moto2 ,
+OLD.cor_moto2 ,
+OLD.motorista_moto2 ,
+OLD.cnh_motorista_moto2 ,
+OLD.placa_moto2,
+now() ,-- pega a data e a hora 
+new.tipo,
+OLD.garagem,
+OLD.descricao,
+OLD.bicicleta
+);
+end$$
+
+USE `projetosj2`$$
+CREATE
+DEFINER=`root`@`localhost`
+TRIGGER `projetosj2`.`atualizaVeiculo`
+AFTER UPDATE ON `projetosj2`.`veiculo_mudanca`
+FOR EACH ROW
+begin
+
+update veiculo set 
+
+idVeiculo=OLD.idVeiculo,
+idMorador=OLD.idMorador,
+bloco=OLD.bloco,
+numeroApartamento=OLD.numeroApartamento,
+modelo_carroAdesivado = OLD.modelo_carroAdesivado,
+cor_carroAdesivado = OLD.cor_carroAdesivado,
+motorista_carroAdesivado = OLD.motorista_carroAdesivado,
+cnh_motorista_carroAdesivado = OLD.cnh_motorista_carroAdesivado,
+placa_carroAdesivado = OLD.placa_carroAdesivado,
+modelo_carroNaoAdesivado = OLD.modelo_carroNaoAdesivado,
+cor_carroNaoAdesivado = OLD.cor_carroNaoAdesivado,
+motorista_carroNaoAdesivado = OLD.motorista_carroNaoAdesivado,
+cnh_motorista_carroNaoAdesivado = OLD.cnh_motorista_carroNaoAdesivado,
+placa_carroNaoAdesivado = OLD.placa_carroNaoAdesivado,
+modelo_moto1 = OLD.modelo_moto1,
+cor_moto1 = OLD.cor_moto1 ,
+motorista_moto1 = OLD.motorista_moto1,
+cnh_motorista_moto1 = OLD.cnh_motorista_moto1,
+placa_moto1 = OLD.placa_moto1,
+modelo_moto2 = OLD.modelo_moto2,
+cor_moto2 = OLD.cor_moto2,
+motorista_moto2 = OLD.motorista_moto2,
+cnh_motorista_moto2 = OLD.cnh_motorista_moto2,
+placa_moto2 = OLD.placa_moto2,
+garagem = OLD.garagem,
+descricao = OLD.descricao,
+bicicleta = OLD.bicicleta
+where  idVeiculo=OLD.idVeiculo;
+
+end$$
+
+
+DELIMITER ;
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

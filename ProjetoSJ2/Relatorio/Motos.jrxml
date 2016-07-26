@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Motos" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1a2b1710-8c47-40aa-8a7f-54a04a2740d4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[select * from veiculo]]>
+	</queryString>
+	<field name="bloco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroApartamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo_moto1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cor_moto1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="motorista_moto1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cnh_motorista_moto1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="placa_moto1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="modelo_moto2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cor_moto2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="motorista_moto2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cnh_motorista_moto2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="placa_moto2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="bloco">
+		<groupExpression><![CDATA[$F{bloco}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement uuid="4f103d96-f6ed-48d4-91ba-6cd9178ec5e7" mode="Opaque" x="-21" y="7" width="843" height="24" forecolor="#B89F7D" backcolor="#F2EBDF"/>
+					<rectangle>
+						<reportElement uuid="7b27c36e-7565-4bb2-98b3-3ed1e720c31f" mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343"/>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<textField>
+						<reportElement uuid="83985090-a5b8-430e-aa24-7120effcad21" style="SubTitle" x="68" y="0" width="755" height="24" forecolor="#736343"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{bloco}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="238b23d3-084b-46a4-a0e0-d280ab4630d6" style="Title" x="270" y="0" width="263" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Motos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="efac5493-f9e1-4c37-87b9-6643c943df39" positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="b8706716-7157-4dab-9f59-39f10fd6b7c9" style="Column header" x="0" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[numeroApartamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="53755087-959e-43d3-9b28-ca2570c5cc66" style="Column header" x="72" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[modelo_moto1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bfed0cc6-c067-4127-adf5-096f069f77e1" style="Column header" x="144" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[cor_moto1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a5b887c4-2595-4c1e-af7a-36e7f5d4e52f" style="Column header" x="216" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[motorista_moto1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6cee0b93-e4c5-4342-8b33-9e3a226bbd9a" style="Column header" x="288" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[cnh_motorista_moto1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bf4874aa-7bb9-497b-b76e-d62ab5b5cb55" style="Column header" x="360" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[placa_moto1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="47428044-9560-4aef-820b-e9bf402c74d8" style="Column header" x="432" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[modelo_moto2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="974f140d-69f4-4e8b-ad0a-b3fc8a59d16a" style="Column header" x="504" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[cor_moto2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fe58443c-f6bf-4793-80dd-ace789198f0b" style="Column header" x="576" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[motorista_moto2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9f0c883b-6dda-47e5-b6b6-4078d68abb5f" style="Column header" x="648" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[cnh_motorista_moto2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ed6e27c7-a90a-4056-a326-42e542883d53" style="Column header" x="720" y="0" width="72" height="15" forecolor="#0033CC"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[placa_moto2]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="c887fbe2-b8fa-4079-85b9-d54cd7608450" style="Row" mode="Opaque" x="0" y="0" width="802" height="15"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="89079262-dde5-4f47-961c-e49d6a329337" style="Detail" x="0" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{numeroApartamento}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="f440ff0c-1b74-4b5d-b2c7-8bd6b79808e5" style="Detail" x="72" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{modelo_moto1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="584b7c97-d9c8-49d3-9d1e-0d780ef0e3aa" style="Detail" x="144" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cor_moto1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="d36ac49f-7924-45a5-ba31-ed00c6865792" style="Detail" x="216" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{motorista_moto1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8add09e2-c249-4063-99d8-1bfbda203e84" style="Detail" x="288" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cnh_motorista_moto1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="0e6f9469-8430-4f9e-9218-7ed484aa498d" style="Detail" x="360" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{placa_moto1}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="36b86cae-246d-4feb-b077-5a0c2376bf13" style="Detail" x="432" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{modelo_moto2}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="b82ea104-8dc0-4d61-bc29-3ec2e9ecc6d4" style="Detail" x="504" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cor_moto2}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="2d8f57cc-0ff1-407d-83d1-2714bd7c3ceb" style="Detail" x="576" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{motorista_moto2}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="edf236bb-51aa-4858-abda-00ac72b39b0f" style="Detail" x="648" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cnh_motorista_moto2}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="0ac08271-ab1f-4243-a66f-76f334f30eb9" style="Detail" x="720" y="0" width="72" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{placa_moto2}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement uuid="ad76b3f3-54a1-420f-b9fb-772c6beb6386" positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="77b7f8d2-a5d7-46e5-ba91-1c76c7effa93" mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="1b4a1f14-ea36-472f-881b-dd8a34ac1db8" style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="0fc51c97-543e-47c8-a094-d05ef9428538" style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="d842b157-959e-4ffb-b4d7-11369231cb98" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

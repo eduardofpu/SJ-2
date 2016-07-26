@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ControleChave" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="816e97ef-0140-418e-8c11-0f237a450f64">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[select * from visita_chave]]>
+	</queryString>
+	<field name="idVisita" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bloco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroApartamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataVisita" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="horaVisita" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="empresa" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacaoSobreServico" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomePorteiro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="autorizacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="horaSaida" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="idVisita">
+		<groupExpression><![CDATA[$F{idVisita}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<frame>
+					<reportElement uuid="57de3e0d-6897-40b1-a626-fe78e40502a5" mode="Opaque" x="-21" y="7" width="843" height="24" forecolor="#B89F7D" backcolor="#F2EBDF"/>
+					<rectangle>
+						<reportElement uuid="90262eb6-a085-4f75-a0a1-9a466f38916b" mode="Opaque" x="21" y="0" width="36" height="24" backcolor="#736343"/>
+						<graphicElement>
+							<pen lineWidth="0.0"/>
+						</graphicElement>
+					</rectangle>
+					<textField>
+						<reportElement uuid="eb37afb5-7544-4e50-874c-e15a67445f63" style="SubTitle" x="68" y="0" width="755" height="24" forecolor="#736343"/>
+						<textElement>
+							<font isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$F{idVisita}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4d5665f7-becc-4c8e-9f99-72b9d1587ab3" style="Title" x="270" y="0" width="263" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Chaves]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="c72ec485-dd3a-41ff-b24a-b9431edfc02a" positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="fc8816a9-cb8f-429b-b4b3-10d2fe9d9fa0" style="Column header" x="0" y="0" width="89" height="15" forecolor="#0033FF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[bloco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e50e5c77-f8a9-4243-98c6-e0cacd56591c" style="Column header" x="89" y="0" width="89" height="15" forecolor="#0033FF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Apartamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4cf51bf6-7479-4c17-baab-19acedb44884" style="Column header" x="178" y="0" width="89" height="15" forecolor="#0033FF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[dataVisita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="09f2616c-833d-456d-968f-e5dd85a43195" style="Column header" x="267" y="0" width="89" height="15" forecolor="#0033FF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[horaVisita]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="11f6bde0-7a88-45c7-81f7-57e6963d2072" style="Column header" x="356" y="0" width="89" height="15" forecolor="#0033FF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[empresa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3b2c642d-448d-4a77-9a63-07b75cd9ddb7" style="Column header" x="445" y="0" width="89" height="15" forecolor="#0033FF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[observacaoSobreServico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dfe7c974-72e7-49a9-8870-4367ad9d3971" style="Column header" x="534" y="0" width="89" height="15" forecolor="#0033FF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[nomePorteiro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="342dd7a6-3304-4fc4-8ab4-28c734cf3777" style="Column header" x="623" y="0" width="89" height="15" forecolor="#0033FF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[autorizacao]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="88b6af1a-7364-4695-8ad9-00ce5237b9e8" style="Column header" x="712" y="0" width="89" height="15" forecolor="#0033FF"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[horaSaida]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="ab8a4e8b-58ac-43ad-8466-1f6c890a55f4" style="Row" mode="Opaque" x="0" y="0" width="802" height="15"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="242561c5-e33b-4806-a7d9-ab9fc5081419" style="Detail" x="0" y="0" width="89" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{bloco}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="f344863c-e281-4d3b-83b0-89aa4d04a1d3" style="Detail" x="89" y="0" width="89" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{numeroApartamento}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="2a736938-ca85-4145-825f-aef4ca0f2a5d" style="Detail" x="178" y="0" width="89" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{dataVisita}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="12772417-4b58-492c-ae42-22601b024411" style="Detail" x="267" y="0" width="89" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{horaVisita}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e70ead65-9af1-46ab-80ab-f8f5ff0840ec" style="Detail" x="356" y="0" width="89" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{empresa}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="665e000e-1b29-4f3f-81fc-df39677cb8f9" style="Detail" x="445" y="0" width="89" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{observacaoSobreServico}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="27483899-7a12-441c-b79c-18ebaa608c40" style="Detail" x="534" y="0" width="89" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{nomePorteiro}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="aebab41d-af07-477b-9739-48e4a5ad91c9" style="Detail" x="623" y="0" width="89" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{autorizacao}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="38a850ae-1047-45bf-b3aa-e84019bb5632" style="Detail" x="712" y="0" width="89" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{horaSaida}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement uuid="53879ec2-7223-45db-9e4e-ef277b2db178" positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="9cb4e10c-1876-41e9-b62d-4a453c7a2444" mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="149d959b-2f20-44ee-9a3d-f60fb88138ac" style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="9a998a23-1380-4866-8439-077f802c8979" style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="c2dc9128-49f1-4dc3-8262-891150771454" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

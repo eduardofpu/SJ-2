@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AnimaisMudança" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cb59eb69-35d8-460c-89d2-bad50e86f326">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[select * from mudanca]]>
+	</queryString>
+	<field name="idMudanca" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bloco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="numeroApartamento" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="quantidadeAnimal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacaoAnimal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataAgendamentoMudanca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dataMudanca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="horaMudanca" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="dataAgendamentoMudanca">
+		<groupExpression><![CDATA[$F{dataAgendamentoMudanca}]]></groupExpression>
+		<groupHeader>
+			<band height="81">
+				<textField>
+					<reportElement uuid="86a961b6-eda5-4bf6-91a4-7310813f77ae" style="SubTitle" x="36" y="41" width="283" height="24" forecolor="#736343"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{dataAgendamentoMudanca}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="4816dc89-568f-48a8-869e-02f476fe12fb" x="100" y="21" width="138" height="20" forecolor="#0000CC"/>
+					<textElement/>
+					<text><![CDATA[Data de Agendamento:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="6"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2fd5781d-d15a-4936-a386-8706f0654879" style="Title" x="270" y="0" width="186" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font size="36" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Animais da mudança]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement uuid="f8c5eb3b-74e6-4da1-9c00-386b556a3ee0" positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement uuid="2d28477c-b858-41d0-bbf1-eedaec5fb3b5" style="Column header" x="0" y="0" width="100" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[idMudanca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6283973e-b5d1-4bb6-93e3-372a59b3332d" style="Column header" x="100" y="0" width="100" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[bloco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f43c5eee-10e4-43b3-b90e-97cf55bb2f9e" style="Column header" x="170" y="1" width="100" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[numeroApartamento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e117bc97-d03a-40af-916b-7212672cce05" style="Column header" x="287" y="1" width="100" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[quantidadeAnimal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="242d6bda-7c50-4efc-8dcb-f054b1c8e2d4" style="Column header" x="400" y="1" width="100" height="15" forecolor="#CC0000"/>
+				<textElement/>
+				<text><![CDATA[observacaoAnimal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3f19f324-1f5a-4b06-acb0-4dc2cd4239c9" style="Column header" x="513" y="0" width="100" height="15" forecolor="#0000CC"/>
+				<textElement/>
+				<text><![CDATA[dataMudanca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dde1f290-ba7d-47bf-9d83-d7fe12d4c173" style="Column header" x="613" y="0" width="100" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[horaMudanca]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="835c57ba-7fd9-4b4e-9665-4a6ac94205ee" style="Column header" x="722" y="0" width="100" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[tipo]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement uuid="7a3c0348-9c84-4999-a8f7-848409b1df28" style="Row" mode="Opaque" x="0" y="0" width="802" height="15"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="2f7a9863-5539-42b3-95e9-a33591ebe6aa" style="Detail" x="0" y="0" width="100" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{idMudanca}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="48c1a310-8302-4857-8542-2bcb0bcc6d52" style="Detail" x="100" y="0" width="100" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{bloco}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="e09b4a79-84f3-43fd-8534-9d821af0aca8" style="Detail" x="200" y="0" width="100" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{numeroApartamento}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="c9a439f4-df08-4501-9962-23ef7d6b1baf" style="Detail" x="300" y="0" width="100" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{quantidadeAnimal}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="3f79a9f0-ad7f-4973-9205-4f6adc9b56ed" style="Detail" x="400" y="0" width="100" height="15" forecolor="#CC0000"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{observacaoAnimal}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="8c7e0b87-f42f-436f-b764-279f55e575e4" style="Detail" x="500" y="0" width="100" height="15" forecolor="#000099"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{dataMudanca}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="38ea1592-fbc0-4f2f-8dbb-c8a1fed5ebf9" style="Detail" x="600" y="0" width="100" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{horaMudanca}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement uuid="39a16bfb-6cd0-4410-b35a-1214c97e4d50" style="Detail" x="700" y="0" width="100" height="15"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tipo}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="6" splitType="Stretch">
+			<line>
+				<reportElement uuid="c713c955-7a9f-4487-bd92-6e8467259efb" positionType="FixRelativeToBottom" x="0" y="3" width="802" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement uuid="e7bb1aac-deeb-4cb2-b100-33645aec0559" mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement uuid="c26eac5c-305e-40f3-b883-8b5827a40ffb" style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="fb43f6e4-8fd9-4835-958f-77446c3bc173" style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement uuid="d787a0ec-b565-49a3-a325-a43f47bb83bb" style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
